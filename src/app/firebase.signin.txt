@@ -1,0 +1,41 @@
+import { Component } from '@angular/core';
+import { FirebaseService } from '../sevices/firebase.service';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+})
+export class LoginComponent {
+  constructor(private firebaseService: FirebaseService) {}
+
+  signIn() {
+    const email = 'abc@gmail.com'; // Replace with actual email
+    const password = 'Abc1234@'; // Replace with actual password
+
+    this.firebaseService
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        alert('login');
+        // Handle successful sign-in
+      })
+      .catch((error) => {
+        // Handle sign-in error
+      });
+  }
+
+  count$!: Observable<number>;
+
+  increment() {
+    
+  }
+
+  decrement() {
+    // TODO: Dispatch a decrement action
+  }
+
+  reset() {
+    // TODO: Dispatch a reset action
+  }
+}
