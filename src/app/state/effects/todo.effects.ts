@@ -63,14 +63,7 @@ export class TodoEffects {
       switchMap((actions) =>
         this.todoservice
           .deleteTodoItemFromFirebase(actions.todoId, actions.todoItem)
-          .pipe(
-            map((data) =>
-              deleteTodoItemSuccessAction({
-                todoId: actions.todoId,
-                todoItem: data,
-              })
-            )
-          )
+          .pipe(map((data) => deleteTodoItemSuccessAction(data)))
       )
     )
   );

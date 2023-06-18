@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
     );
   }
   handleCreateTodoItem(todoId: string, i: number) {
-    console.log(todoId);
     const uid = uuidv4();
     this.store.dispatch(
       createTodoItemAction({

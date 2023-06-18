@@ -8,7 +8,7 @@ import {
   loadTodoSuccessAction,
 } from '../actions/todo.actions';
 
-export const initialState: ReadonlyArray<Todo> = [];
+export const initialState: Todo[] = [];
 
 export const todoReducer = createReducer(
   initialState,
@@ -35,19 +35,20 @@ export const todoReducer = createReducer(
     return state.filter((item) => item.id !== todoId);
   }),
   on(deleteTodoItemSuccessAction, (state, { todoId, todoItem }) => {
-    console.log(state);
-
     const updatedTodos = state.map((item) => {
       if (item.id === todoId) {
         const updatedContent = item.content.filter(
           (it) => it.id !== todoItem.id
         );
-        item.content = [...updatedContent];
+
+        return {
+          ...item,
+          content: updatedContent,
+        };
       }
       return item;
     });
-    console.log(state);
-    console.log(updatedTodos);
+
     return updatedTodos;
   })
 );
